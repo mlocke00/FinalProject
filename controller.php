@@ -1,7 +1,7 @@
 <?php
     include_once "controllers/ControllerAction.php";
     include_once "controllers/ContactControllers.php";
-    include_once "models/ContactDAO.php";
+    include_once "models/UserDAO.php";
 
     class FrontController { 
         private $controllers;

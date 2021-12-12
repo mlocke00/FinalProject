@@ -1,15 +1,15 @@
 <?php
     //include "ControllerAction.php";
-    //include "model/ContactDAO.php";
+    //include "model/UserDAO.php";
 
 
-    class ContactList implements ControllerAction{
+    class UserList implements ControllerAction{
 
         function processGET(){
-            $contactDAO = new ContactDAO();
-            $contacts = $contactDAO->getContacts();
-            $_REQUEST['contacts']=$contacts;
-            return "views/listContact.php";
+            $userDAO = new UserDAO();
+            $users = $userDAO->getUsers();
+            $_REQUEST['users']=$users;
+            return "views/listUser.php";
         }
 
         function processPOST(){
@@ -22,22 +22,28 @@
 
     }
 
-    class ContactAdd implements ControllerAction{
+    class UserAdd implements ControllerAction{
 
         function processGET(){
-            return "views/addContact.php";
+            return "views/addUser.php";
         }
 
         function processPOST(){
             $username=$_POST['username'];
-            $email=$_POST['email'];
+            $lastname=$_POST['lastname'];
+            $firstname=$_POST['firstname'];
             $passwd=$_POST['passwd'];
-            $contact = new Contact();
-            $contact->setUsername($username);
-            $contact->setEmail($email);
-            $contact->setPasswd($passwd);
-            $contactDAO = new ContactDAO();
-            $contactDAO->addContact($contact);
+            $email=$_POST['email'];
+            $role=$_POST['role'];
+            $user = new User();
+            $user->setUsername($username);
+            $user->setLastname($lastname);
+            $user->setFirstname($firstname);
+            $user->setPasswd($passwd);
+            $user->setEmail($email);
+            $user->setRole($role);
+            $userDAO = new UserDAO();
+            $userDAO->addUser($user);
             header("Location: controller.php?page=list");
             exit;
         }
@@ -48,20 +54,20 @@
 
     }
 
-    class ContactDelete implements ControllerAction{
+    class UserDelete implements ControllerAction{
 
         function processGET(){
-            $contactid = $_GET['contactID'];
-            return 'views/delContact.php';
+            $userid = $_GET['userID'];
+            return 'views/delUser.php';
 
         }
 
         function processPOST(){
-            $contactid=$_POST['contactID'];
+            $userid=$_POST['userID'];
             $submit=$_POST['submit'];
             if($submit=='CONFIRM'){
-                $contactDAO = new ContactDAO();
-                $contactDAO->deleteContact($contactid);
+                $userDAO = new UserDAO();
+                $userDAO->deleteUser($userid);
             }
             header("Location: controller.php?page=list");
             exit;
@@ -82,8 +88,8 @@
         function processPOST(){
             $username=$_POST['username'];
             $passwd=$_POST['passwd'];
-            $contactDAO = new ContactDAO();
-            $found=$contactDAO->authenticate($username,$passwd);
+            $userDAO = new UserDAO();
+            $found=$userDAO->authenticate($username,$passwd);
             if($found==null){
                 $nextView="Location: controller.php?page=login";
             }else{
