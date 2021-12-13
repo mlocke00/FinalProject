@@ -1,7 +1,9 @@
 <?php
     include_once "controllers/ControllerAction.php";
-    include_once "controllers/ContactControllers.php";
+    include_once "controllers/UserControllers.php";
+    include_once "controllers/TopicControllers.php";
     include_once "models/UserDAO.php";
+    include_once "models/TopicDAO.php";
 
     class FrontController { 
         private $controllers;
@@ -41,11 +43,16 @@
         /******************************************************
          * Register the Controllers with the Front Controller *
          ******************************************************/
-            $controllers["GET"."list"] = new ContactList();
-            $controllers["GET"."add"] = new ContactAdd();
-            $controllers["POST"."add"] = new ContactAdd();
-            $controllers["GET"."delete"] = new ContactDelete();
-            $controllers["POST"."delete"] = new ContactDelete();
+            $controllers["GET"."list"] = new UserList();
+            $controllers["GET"."add"] = new UserAdd();
+            $controllers["POST"."add"] = new UserAdd();
+            $controllers["GET"."delete"] = new UserDelete();
+            $controllers["POST"."delete"] = new UserDelete();
+            $controllers["GET"."list"] = new TopicList();
+            $controllers["GET"."add"] = new TopicAdd();
+            $controllers["POST"."add"] = new TopicAdd();
+            $controllers["GET"."delete"] = new TopicDelete();
+            $controllers["POST"."delete"] = new TopicDelete();
             $controllers["GET"."login"] = new Login();
             $controllers["POST"."login"] = new Login();
             $controllers["GET"."home"] = new Home();
