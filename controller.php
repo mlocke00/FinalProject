@@ -3,9 +3,11 @@
     include_once "controllers/UserControllers.php";
     include_once "controllers/TopicControllers.php";
     include_once "controllers/ArticleControllers.php";
+    include_once "controllers/CommentControllers.php";
     include_once "models/UserDAO.php";
     include_once "models/TopicDAO.php";
     include_once "models/ArticleDAO.php";
+    include_once "models/CommentDAO.php";
 
     class FrontController { 
         private $controllers;
@@ -60,6 +62,11 @@
             $controllers["POST"."add"] = new ArticleAdd();
             $controllers["GET"."delete"] = new ArticleDelete();
             $controllers["POST"."delete"] = new ArticleDelete();
+            $controllers["GET"."list"] = new CommentList();
+            $controllers["GET"."add"] = new CommentAdd();
+            $controllers["POST"."add"] = new CommentAdd();
+            $controllers["GET"."delete"] = new CommentDelete();
+            $controllers["POST"."delete"] = new CommentDelete();
             $controllers["GET"."login"] = new Login();
             $controllers["POST"."login"] = new Login();
             $controllers["GET"."home"] = new Home();

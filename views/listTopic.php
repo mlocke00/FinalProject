@@ -1,5 +1,5 @@
 <?php 
-   $users = $_REQUEST['topics'];
+   $topics = $_REQUEST['topics'];
 ?>
     <div class="container">
         <div class="col">
