@@ -2,8 +2,10 @@
     include_once "controllers/ControllerAction.php";
     include_once "controllers/UserControllers.php";
     include_once "controllers/TopicControllers.php";
+    include_once "controllers/ArticleControllers.php";
     include_once "models/UserDAO.php";
     include_once "models/TopicDAO.php";
+    include_once "models/ArticleDAO.php";
 
     class FrontController { 
         private $controllers;
@@ -53,6 +55,11 @@
             $controllers["POST"."add"] = new TopicAdd();
             $controllers["GET"."delete"] = new TopicDelete();
             $controllers["POST"."delete"] = new TopicDelete();
+            $controllers["GET"."list"] = new ArticleList();
+            $controllers["GET"."add"] = new ArticleAdd();
+            $controllers["POST"."add"] = new ArticleAdd();
+            $controllers["GET"."delete"] = new ArticleDelete();
+            $controllers["POST"."delete"] = new ArticleDelete();
             $controllers["GET"."login"] = new Login();
             $controllers["POST"."login"] = new Login();
             $controllers["GET"."home"] = new Home();
